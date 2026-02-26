@@ -1,0 +1,255 @@
+.open lib.db
+.headers on
+.mode markdown
+PRAGMA foreign_keys=on;
+PRAGMA foreign_keys;
+
+create table TAGOK(
+	ID int primary key,
+	nev varchar2(30),
+	ir_szam int(4),
+	utca varchar2(20),
+	hazszam char(5)
+);
+
+create table SZAMITOGEP(
+	sz_szam int primary key,
+	op_rendszer varchar1(15),
+	tarhely int(4)
+);
+
+create table NYELVEK(
+	NyID int primary key,
+	nyelv varchar2(10)
+);
+
+create table FILMEK(
+	FID int primary key,
+	cim varchar2(20),
+	kiado varchar2(20),
+	megj_ev date,
+	hossz int(3)
+);
+
+create table KONYVEK(
+	BID int primary key,
+	szerzo varchar2(20),
+	cim varchar2(20),
+	kiado varchar2(20),
+	kiad_ev date
+);
+
+create table FELSZERELT(
+	billentyuzet varchar2(15),
+	eger varchar2(10),
+	sz_szam int primary key,
+	foreign key(sz_szam) references SZAMITOGEP(sz_szam) 
+	
+);
+
+ create table DALOK(
+         DID int primary key,
+         cim varchar2(20) NOT NULL,
+         hossz int NOT NULL,
+         megj_ev int,
+         nyelv varchar2(10)
+ );
+
+create table ELOADOK(
+	DID int primary key,
+	eloado_1 varchar2 (20) NOT NULL,
+	eloado_2 varchar2 (20),
+	foreign key (DID) references DALOK(DID)
+);
+
+create table ALBUMOK(
+	AID int primary key,
+	kiado varchar2(20),
+	kiad_ev int,
+	cim varhcar2(20)
+);
+
+create table TARTALMAZ(
+	AID int,
+	DID int,
+	primary key(AID,DID),
+	foreign key(AID) references ALBUMOK(AID),
+	foreign key(DID) references DALOK(DID)
+);
+
+create table HASZNALAT(
+	HID int primary key,
+	haszn_ido date NOT NULL,
+	datum date NOT NULL,
+	sz_szam int,
+	ID int,
+	foreign key(sz_szam) references SZAMITOGEP(sz_szam),
+	foreign key(ID) references TAGOK(ID)
+);
+
+create table BKOLCSON(
+	BK int primary key,
+	kezd_datum date NOT NULL,
+	vissza_datum date,
+	ID int,
+	BID int,
+	foreign key(BID) references KONYVEK(BID),
+	foreign key(ID) references TAGOK(ID)
+);
+
+create table IGENYLES(
+	ID int,
+	BID int,
+	igeny_datum date NOT NULL,
+	szalllit_datum date,
+	beszerz_ar int,
+	primary key(BID,ID),
+
+	foreign key(ID) references TAGOK(ID),
+	foreign key(BID) references KONYVEK(BID)
+);
+
+create table FKOLCSON(
+	FK int primary key,
+	kezd_datum date NOT NULL,
+	vissza_datum date,
+	ID int,
+	FID int,
+	foreign key(ID) references TAGOK(ID),
+	foreign key(FID) references FILMEK(FID)
+); 
+
+create table AKOLCSON(
+	AK int primary key,
+	kezd_datum date NUT NULL,
+	vissza_datum date,
+	ID int,
+	AID int,
+	foreign key(ID) references TAGOK(ID),
+	foreign key(AID) references ALBUMOK(AID)
+);
+
+create table K_NY(
+	BID int,
+	NyID int,
+	darab int,
+	primary key(BID,NyID),
+	foreign key(BID) references KONYVEK(BID),
+	foreign key(NyID) references NYELVEK(NyID)
+);
+
+create table TAGDIJ(
+	ID int primary key,
+	_2020 int,
+	_2021 int,
+	_2022 int,
+	_2023 int,
+	foreign key(ID) references TAGOK(ID)
+);
+
+create table EMAIL(
+	ID int primary key,
+	email_1 varchar1 NOT NULL,
+	email_2 varchar2,
+
+	foreign key(ID) references TAGOK(ID)
+);
+
+create table TELEFON(
+	ID int primary key,
+	tel_1 varchar1 NOT NULL,
+	tel_2 varchar1,
+	foreign key(ID) references TAGOK(ID)
+);
+
+--Tagok
+
+insert into TAGOK values(1,'Csákó Balázs', 3515, 'Eper utca', '2');
+insert into TAGOK values(2,'Mek Elek', 1921, 'Alma utca', '31/A');
+insert into TAGOK values(3,'Kiss Konrád', 5732, 'Cyber út', '69');
+insert into TAGOK values(4,'Nagy Árpi', 5432, 'Gyár utca', '13');
+insert into TAGOK values(5,'Békés Csaba', 5600, 'Nyugodt út', '22');
+insert into TAGOK values(6,'Vastag Barna', 3515, 'Tölgyes utca', '42');
+insert into TAGOK values(7,'Fekete Péter', 3510, 'Búza tér', '1');
+
+--Gepek
+
+insert into SZAMITOGEP values (1,'Linux', 256);
+insert into SZAMITOGEP values (2,'Linux', 512);
+insert into SZAMITOGEP values (3,'Windows', 1024);
+insert into SZAMITOGEP values (4,'Windows', 256);
+insert into SZAMITOGEP values (5,'Linux', 512);
+insert into SZAMITOGEP values (6,'MAC', 128);
+
+--Nyelvek
+
+insert into NYELVEK values(1, 'magyar');
+insert into NYELVEK values(2, 'német');
+insert into NYELVEK values(3, 'angol');
+insert into NYELVEK values(4, 'olasz');
+insert into NYELVEK values(5, 'francia');
+insert into NYELVEK values(6, 'orosz');
+
+
+-- filmek feltoltese
+
+--konyvek feltoltese
+
+insert into Konyvek values (1,'Rick Riordan', 'A villámtolvaj', 'Konyvmolykepzo', 2005);
+insert into Konyvek values (2,'Leo Tolstoy', 'Anne Katerina', 'Amazon', 2016);
+insert into Konyvek values (3,'F. Scott Fitzgerald', 'The Great Gatsby', 'Wordsworth Editions', 2019);
+insert into Konyvek values (4,'Mark Twain', 'Huckleberry Finn kalandjai', 'Atheneum', 1921);
+insert into Konyvek values (5,'Herman Melville', 'Moby Dick', 'Európa', 1989);
+insert into Konyvek values (6,'Stephen King', 'Puszta földek', 'Európa', 2023);
+insert into Konyvek values (7,'Stephen King', 'Később ', 'Európa', 2022);
+insert into Konyvek values (8,'Rick Riordan', 'Az elveszett hős', 'Konyvmolykepzo', 2010);
+insert into Konyvek values (9,'Rick Riordan', 'A szörnyek tengere', 'Konyvmolykepzo', 2006);
+insert into Konyvek values (10,'Mira Grant', 'Feed', 'Orbit Books', 2010);
+insert into Konyvek values (11,'Garth Risk Hallberg', 'City on fire', 'Knopf', 2015);
+insert into Konyvek values (12,'Don Winslow', 'The Cartel', 'Knopf', 2015);
+insert into Konyvek values (13,'Neil Gailmann', 'Coraline', 'William Morrow Paperbacks', 2002);
+insert into Konyvek values (14,'Christopher Paolini', 'Eragon', 'Knopf', 2005);
+insert into Konyvek values (15,'Orhan Pamuk', 'Snow', 'Vintage Books', 2015);
+
+--Albomok feltolt 
+
+insert into Albumok values(1,'Atlantic Records', 2012,'Unorthodox Jukebox') ;
+insert into Albumok values(2,'Warner Bros. Records', 2007,'Death Magnetic') ;
+insert into Albumok values(3,'Ekkluzív Music', 2005,'Hősi Énekek' ) ;
+
+--Dalok feltölt
+
+insert into DALOK values(1,'That was just your life', 428,1990,'angol') ;
+insert into DALOK values(2,'The end of the line', 472,1992,'angol') ;
+insert into DALOK values(3,'Broken, Beat & Scarred', 385,1996,'angol') ;
+insert into DALOK values(4,'Kárpátok, zengjetek', 215,2006,'magyar') ;
+insert into DALOK values(5,'Abból a fából', 261,2007,'magyar') ;
+insert into DALOK values(6,'Lesz még', 184,2007,'magyar') ;
+insert into DALOK values(7,'Young girls', 229,2008,'angol') ;
+insert into DALOK values(8,'Gorilla', 244,2007,'angol') ;
+insert into DALOK values(9,'Treasure', 176,2009,'angol') ;
+
+--Tartalmaz feltolt
+insert into TARTALMAZ values(1,7);
+insert into TARTALMAZ values(1,8);
+insert into TARTALMAZ values(1,9);
+insert into TARTALMAZ values(2,1);
+insert into TARTALMAZ values(2,2);
+insert into TARTALMAZ values(2,3);
+insert into TARTALMAZ values(3,4);
+insert into TARTALMAZ values(3,5);
+insert into TARTALMAZ values(3,6);
+
+--Előadók felt
+insert into Eloadok values (1,'Metallica') ;
+insert into Eloadok values (2,'Metallica') ;
+insert into Eloadok values (3,'Metallica') ;
+insert into Eloadok values (4,'Kárpátia') ;
+insert into Eloadok values (5,'Kárpátia') ;
+insert into Eloadok values (6,'Kárpátia') ;
+insert into Eloadok values
+(7,'Bruno Mars', 'Philip Lawrence') ;
+insert into Eloadok values
+(8,'Bruno Mars', 'Ari Levine') ;
+insert into Eloadok values
+(9,'Bruno Mars', 'Phredley Brown') ;
