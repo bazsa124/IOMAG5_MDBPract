@@ -1,0 +1,144 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="vendeglatas">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="etterem" type="etteremType" maxOccurs="unbounded"/>
+                <xs:element name="foszakacs" type="foszakacsType" maxOccurs="unbounded"/>
+                <xs:element name="szakacs" type="szakacsType" maxOccurs="unbounded"/>
+                <xs:element name="gyakornok" type="gyakornokType" maxOccurs="unbounded"/>
+                <xs:element name="vendeg" type="vendegType" maxOccurs="unbounded"/>
+                <xs:element name="rendeles" type="rendelesType" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    
+        <xs:key name="etterem_kulcs">
+            <xs:selector xpath="etterem"/>
+            <xs:field xpath="@eKod" />
+        </xs:key>
+
+        <xs:key name="foszakacs_kulcs">
+            <xs:selector xpath="foszakacs"/>
+            <xs:field xpath="@fKod" />
+        </xs:key>
+
+        <xs:key name="szakacs_kulcs">
+            <xs:selector xpath="szakacs"/>
+            <xs:field xpath="@szKod" />
+        </xs:key>
+
+        <xs:key name="gyakornok_kulcs">
+            <xs:selector xpath="gyakornok"/>
+            <xs:field xpath="@gyKod" />
+        </xs:key>
+
+        <xs:key name="vendeg_kulcs">
+            <xs:selector xpath="vendeg"/>
+            <xs:field xpath="@vKod" />
+        </xs:key>
+
+        <xs:keyref refer="etterem_kulcs" name="etterem_idegen_kulcs">
+            <xs:selector xpath="rendeles"/>
+            <xs:field xpath="@e_v_e"/>
+        </xs:keyref>
+
+        <xs:keyref refer="vendeg_kulcs" name="vendeg_idegen_kulcs">
+            <xs:selector xpath="rendeles"/>
+            <xs:field xpath="@e_v_v"/>
+        </xs:keyref>
+
+        <xs:keyref refer="etterem_kulcs" name="foszakacs_etterem_idegen_kulcs">
+            <xs:selector xpath="foszakacs"/>
+            <xs:field xpath="@e_f"/>
+        </xs:keyref>
+
+        <xs:keyref refer="etterem_kulcs" name="szakacs_etterem_idegen_kulcs">
+            <xs:selector xpath="szakacs"/>
+            <xs:field xpath="@e_sz"/>
+        </xs:keyref>
+
+        <xs:keyref refer="etterem_kulcs" name="gyakornok_etterem_idegen_kulcs">
+            <xs:selector xpath="gyakornok"/>
+            <xs:field xpath="@e_gy"/>
+        </xs:keyref>
+
+        <xs:unique name="unique_foszakacs">
+            <xs:selector xpath="foszakacs"/>
+            <xs:field xpath="@fKod"/>
+        </xs:unique>
+
+
+    </xs:element>
+
+    <xs:complexType name="etteremType">
+        <xs:sequence>
+            <xs:element name="nev" type="xs:string"/>
+            <xs:element name="cim" type="cimType"/>
+            <xs:element name="csillag" type="xs:integer"/>
+        </xs:sequence>
+        <xs:attribute name="eKod" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="cimType">
+        <xs:sequence>
+            <xs:element name="varos" type="xs:string"/>
+            <xs:element name="utca" type="xs:string"/>
+            <xs:element name="hazszam" type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="foszakacsType">
+        <xs:sequence>
+            <xs:element name="nev" type="xs:string"/>
+            <xs:element name="eletkor" type="xs:integer"/>
+            <xs:element name="vegzettseg" type="xs:string" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="fKod" type="xs:string" use="required" />
+        <xs:attribute name="e_f" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="szakacsType">
+        <xs:sequence>
+            <xs:element name="nev" type="xs:string"/>
+            <xs:element name="reszleg" type="xs:string"/>
+            <xs:element name="vegzettseg" type="xs:string" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="szKod" type="xs:string" use="required" />
+        <xs:attribute name="e_sz" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="gyakornokType">
+        <xs:sequence>
+            <xs:element name="nev" type="xs:string"/>
+            <xs:element name="gyakorlat" type="gyakorlatType"/>
+            <xs:element name="muszak" type="xs:string" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="gyKod" type="xs:string" use="required" />
+        <xs:attribute name="e_gy" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="gyakorlatType">
+        <xs:sequence>
+            <xs:element name="kezdete" type="xs:date"/>
+            <xs:element name="idotartam" type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+
+     <xs:complexType name="vendegType">
+        <xs:sequence>
+            <xs:element name="nev" type="xs:string"/>
+            <xs:element name="eletkor" type="xs:integer"/>
+            <xs:element name="cim" type="cimType"/>
+        </xs:sequence>
+        <xs:attribute name="vKod" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="rendelesType">
+        <xs:sequence>
+            <xs:element name="etel" type="xs:string"/>
+            <xs:element name="osszeg" type="xs:integer"/>
+        </xs:sequence>
+        <xs:attribute name="e_v_e" type="xs:string" use="required" />
+        <xs:attribute name="e_v_v" type="xs:string" use="required" />
+    </xs:complexType>
+</xs:schema>

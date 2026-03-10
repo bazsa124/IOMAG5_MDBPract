@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <vendeglatas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="IOMAG5_XMLSchema.xsd">
+        <etterem eKod="e1">
+            <nev>Trófea</nev>
+            <cim>
+                <varos>Budapest</varos>
+                <utca>Alma</utca>
+                <hazszam>1</hazszam>
+            </cim>
+            <csillag>3</csillag>
+        </etterem>
+
+        <etterem eKod="e2">
+            <nev>Leveses</nev>
+            <cim>
+                <varos>Miskolc</varos>
+                <utca>Alma</utca>
+                <hazszam>1</hazszam>
+            </cim>
+            <csillag>5</csillag>
+        </etterem>
+
+        <foszakacs fKod="f1" e_f="e1">
+            <nev>Teszt Elek</nev>
+            <eletkor>67</eletkor>
+            <vegzettseg>8 általános</vegzettseg>
+            <vegzettseg>gimnazium</vegzettseg>
+        </foszakacs>
+
+        <foszakacs fKod="f2" e_f="e2">
+            <nev>Piros Alma</nev>
+            <eletkor>31</eletkor>
+            <vegzettseg>8 általános</vegzettseg>
+            <vegzettseg>gimnazium</vegzettseg>
+            <vegzettseg>Kulináris egyetem</vegzettseg>
+        </foszakacs>
+
+        <szakacs szKod="sz1" e_sz="e1">
+            <nev>Kutya Kornél</nev>
+            <reszleg>Konyha</reszleg>
+            <vegzettseg>8 általános</vegzettseg>
+        </szakacs>
+
+        <szakacs szKod="sz2" e_sz="e1">
+            <nev>Ötlet Elek</nev>
+            <reszleg>Előkészületek</reszleg>
+            <vegzettseg>8 általános</vegzettseg>
+            <vegzettseg>gimnázium</vegzettseg>
+        </szakacs>
+
+        <szakacs szKod="sz3" e_sz="e2">
+            <nev>Marha Marcell</nev>
+            <reszleg>Előkészületek</reszleg>
+            <vegzettseg>8 általános</vegzettseg>
+            <vegzettseg>gimnázium</vegzettseg>
+            <vegzettseg>Egyetem</vegzettseg>
+        </szakacs>
+
+        <gyakornok gyKod="gy1" e_gy="e1">
+            <nev>Disznó Dániel</nev>
+            <gyakorlat>
+                <kezdete>2025-06-01</kezdete>
+                <idotartam>90</idotartam>
+            </gyakorlat>
+            <muszak>2025-06-01 délelőtt</muszak>
+            <muszak>2025-06-03 délután</muszak>
+        </gyakornok>
+
+        <gyakornok gyKod="gy2" e_gy="e2">
+            <nev>Hal Huba</nev>
+            <gyakorlat>
+                <kezdete>2025-08-01</kezdete>
+                <idotartam>120</idotartam>
+            </gyakorlat>
+            <muszak>2025-08-01 délelőtt</muszak>
+            <muszak>2025-08-03 délután</muszak>
+        </gyakornok>
+
+        <gyakornok gyKod="gy3" e_gy="e2">
+            <nev>Csirke Csilla</nev>
+            <gyakorlat>
+                <kezdete>2026-01-01</kezdete>
+                <idotartam>100</idotartam>
+            </gyakorlat>
+            <muszak>2026-01-01 délelőtt</muszak>
+            <muszak>2026-01-02 délután</muszak>
+        </gyakornok>
+
+        <vendeg vKod="v1">
+            <nev>Vendég Virág</nev>
+            <eletkor>21</eletkor>
+            <cim>
+                <varos>Eger</varos>
+                <utca>Alma</utca>
+                <hazszam>1</hazszam>
+            </cim>
+        </vendeg>
+
+        <vendeg vKod="v2">
+            <nev>Eszek Eszter</nev>
+            <eletkor>19</eletkor>
+            <cim>
+                <varos>Győr</varos>
+                <utca>Alma</utca>
+                <hazszam>1</hazszam>
+            </cim>
+        </vendeg>
+
+        <rendeles e_v_v="v1" e_v_e="e1">
+            <etel>Marha pacal</etel>
+            <osszeg>2990</osszeg>
+        </rendeles>
+
+        <rendeles e_v_v="v2" e_v_e="e1">
+            <etel>Csorba leves</etel>
+            <osszeg>1490</osszeg>
+        </rendeles>
+
+        <rendeles e_v_v="v2" e_v_e="e2">
+            <etel>Disznó pörkölt</etel>
+            <osszeg>2790</osszeg>
+        </rendeles>
+
+        <rendeles e_v_v="v2" e_v_e="e2">
+            <etel>Cézár saláta</etel>
+            <osszeg>1890</osszeg>
+        </rendeles>
+
+    </vendeglatas>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="konyvtar">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="tag"          type="tagType"          maxOccurs="unbounded"/>
+                <xs:element name="szamitogep"   type="szamitogepType"   maxOccurs="unbounded"/>
+                <xs:element name="konyv"        type="konyvType"        maxOccurs="unbounded"/>
+                <xs:element name="film"         type="filmType"         maxOccurs="unbounded"/>
+                <xs:element name="album"        type="albumType"        maxOccurs="unbounded"/>
+                <xs:element name="dal"          type="dalType"          maxOccurs="unbounded"/>
+                <xs:element name="hasznalat"    type="hasznalatType"    maxOccurs="unbounded"/>
+                <xs:element name="igenyles"     type="igenylesType"     maxOccurs="unbounded"/>
+                <xs:element name="k_kolcsonzes" type="kKolcsonzesType"  maxOccurs="unbounded"/>
+                <xs:element name="f_kolcsonzes" type="fKolcsonzesType"  maxOccurs="unbounded"/>
+                <xs:element name="a_kolcsonzes" type="aKolcsonzesType"  maxOccurs="unbounded"/>
+                <xs:element name="tartalmaz"    type="tartalmazType"    maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+
+        <xs:key name="tag_kulcs">
+            <xs:selector xpath="tag"/>
+            <xs:field xpath="@tKod"/>
+        </xs:key>
+
+        <xs:key name="szamitogep_kulcs">
+            <xs:selector xpath="szamitogep"/>
+            <xs:field xpath="@szKod"/>
+        </xs:key>
+
+        <xs:key name="konyv_kulcs">
+            <xs:selector xpath="konyv"/>
+            <xs:field xpath="@kKod"/>
+        </xs:key>
+
+        <xs:key name="film_kulcs">
+            <xs:selector xpath="film"/>
+            <xs:field xpath="@fKod"/>
+        </xs:key>
+
+        <xs:key name="album_kulcs">
+            <xs:selector xpath="album"/>
+            <xs:field xpath="@aKod"/>
+        </xs:key>
+
+        <xs:key name="dal_kulcs">
+            <xs:selector xpath="dal"/>
+            <xs:field xpath="@dKod"/>
+        </xs:key>
+
+        <xs:keyref refer="tag_kulcs" name="hasznalat_tag_ref">
+            <xs:selector xpath="hasznalat"/>
+            <xs:field xpath="@t_h"/>
+        </xs:keyref>
+
+        <xs:keyref refer="szamitogep_kulcs" name="hasznalat_szamitogep_ref">
+            <xs:selector xpath="hasznalat"/>
+            <xs:field xpath="@h_sz"/>
+        </xs:keyref>
+
+        <xs:keyref refer="tag_kulcs" name="igenyles_tag_ref">
+            <xs:selector xpath="igenyles"/>
+            <xs:field xpath="@i_t"/>
+        </xs:keyref>
+
+        <xs:keyref refer="konyv_kulcs" name="igenyles_konyv_ref">
+            <xs:selector xpath="igenyles"/>
+            <xs:field xpath="@i_k"/>
+        </xs:keyref>
+
+        <xs:keyref refer="tag_kulcs" name="k_kolcsonzes_tag_ref">
+            <xs:selector xpath="k_kolcsonzes"/>
+            <xs:field xpath="@kk_t"/>
+        </xs:keyref>
+
+        <xs:keyref refer="konyv_kulcs" name="k_kolcsonzes_konyv_ref">
+            <xs:selector xpath="k_kolcsonzes"/>
+            <xs:field xpath="@kk_k"/>
+        </xs:keyref>
+
+        <xs:keyref refer="tag_kulcs" name="f_kolcsonzes_tag_ref">
+            <xs:selector xpath="f_kolcsonzes"/>
+            <xs:field xpath="@fk_t"/>
+        </xs:keyref>
+
+        <xs:keyref refer="film_kulcs" name="f_kolcsonzes_film_ref">
+            <xs:selector xpath="f_kolcsonzes"/>
+            <xs:field xpath="@fk_f"/>
+        </xs:keyref>
+
+        <xs:keyref refer="tag_kulcs" name="a_kolcsonzes_tag_ref">
+            <xs:selector xpath="a_kolcsonzes"/>
+            <xs:field xpath="@ak_t"/>
+        </xs:keyref>
+
+        <xs:keyref refer="album_kulcs" name="a_kolcsonzes_album_ref">
+            <xs:selector xpath="a_kolcsonzes"/>
+            <xs:field xpath="@ak_a"/>
+        </xs:keyref>
+
+        <xs:keyref refer="album_kulcs" name="tartalmaz_album_ref">
+            <xs:selector xpath="tartalmaz"/>
+            <xs:field xpath="@ta_a"/>
+        </xs:keyref>
+
+        <xs:keyref refer="dal_kulcs" name="tartalmaz_dal_ref">
+            <xs:selector xpath="tartalmaz"/>
+            <xs:field xpath="@ta_d"/>
+        </xs:keyref>
+
+    </xs:element>
+
+    <!-- ==================== típusok ==================== -->
+
+    <xs:complexType name="tagType">
+        <xs:sequence>
+            <xs:element name="nev"          type="xs:string"/>
+            <xs:element name="lakcim"       type="lakcimType"/>
+            <xs:element name="email"        type="xs:string" maxOccurs="unbounded"/>
+            <xs:element name="telefonszam"  type="xs:string" maxOccurs="unbounded"/>
+            <xs:element name="tagdij"       type="xs:decimal"/>
+        </xs:sequence>
+        <xs:attribute name="tKod" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="lakcimType">
+        <xs:sequence>
+            <xs:element name="iranyitoszam" type="xs:integer"/>
+            <xs:element name="utca"         type="xs:string"/>
+            <xs:element name="hazszam"      type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="szamitogepType">
+        <xs:sequence>
+            <xs:element name="operacios_rendszer" type="xs:string"/>
+            <xs:element name="tarhely"            type="xs:string"/>
+            <xs:element name="felszereltseg"      type="xs:string" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="szKod" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="konyvType">
+        <xs:sequence>
+            <xs:element name="szerzo"        type="xs:string"/>
+            <xs:element name="cim"           type="xs:string"/>
+            <xs:element name="kiado"         type="xs:string"/>
+            <xs:element name="kiadas_datuma" type="xs:date"/>
+            <xs:element name="nyelv"         type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="kKod" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="filmType">
+        <xs:sequence>
+            <xs:element name="cim"               type="xs:string"/>
+            <xs:element name="kiado"             type="xs:string"/>
+            <xs:element name="megjelenes_datuma" type="xs:date"/>
+            <xs:element name="hossz"             type="xs:integer"/>
+        </xs:sequence>
+        <xs:attribute name="fKod" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="albumType">
+        <xs:sequence>
+            <xs:element name="eloado"      type="xs:string" maxOccurs="unbounded"/>
+            <xs:element name="cim"         type="xs:string"/>
+            <xs:element name="kiado"       type="xs:string"/>
+            <xs:element name="kiadas_eve"  type="xs:integer"/>
+            <xs:element name="mufaj"       type="xs:string" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="aKod" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="dalType">
+        <xs:sequence>
+            <xs:element name="eloado"     type="xs:string"/>
+            <xs:element name="cim"        type="xs:string"/>
+            <xs:element name="hossz"      type="xs:integer"/>
+            <xs:element name="kiado"      type="xs:string"/>
+            <xs:element name="kiadas_eve" type="xs:integer"/>
+        </xs:sequence>
+        <xs:attribute name="dKod" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="hasznalatType">
+        <xs:sequence>
+            <xs:element name="datum"           type="xs:date"/>
+            <xs:element name="hasznalat_ideje" type="xs:integer"/>
+        </xs:sequence>
+        <xs:attribute name="t_h"  type="xs:string" use="required"/>
+        <xs:attribute name="h_sz" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="igenylesType">
+        <xs:sequence>
+            <xs:element name="beszer_ar"        type="xs:decimal"/>
+            <xs:element name="szallitasi_datum" type="xs:date"/>
+            <xs:element name="igenylesi_datum"  type="xs:date"/>
+        </xs:sequence>
+        <xs:attribute name="i_t" type="xs:string" use="required"/>
+        <xs:attribute name="i_k" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="kKolcsonzesType">
+        <xs:sequence>
+            <xs:element name="kezdet" type="xs:date"/>
+            <xs:element name="veg"    type="xs:date"/>
+        </xs:sequence>
+        <xs:attribute name="kk_t" type="xs:string" use="required"/>
+        <xs:attribute name="kk_k" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="fKolcsonzesType">
+        <xs:sequence>
+            <xs:element name="kezdet" type="xs:date"/>
+            <xs:element name="veg"    type="xs:date"/>
+        </xs:sequence>
+        <xs:attribute name="fk_t" type="xs:string" use="required"/>
+        <xs:attribute name="fk_f" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="aKolcsonzesType">
+        <xs:sequence>
+            <xs:element name="kezdet" type="xs:date"/>
+            <xs:element name="veg"    type="xs:date"/>
+        </xs:sequence>
+        <xs:attribute name="ak_t" type="xs:string" use="required"/>
+        <xs:attribute name="ak_a" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="tartalmazType">
+        <xs:attribute name="ta_a" type="xs:string" use="required"/>
+        <xs:attribute name="ta_d" type="xs:string" use="required"/>
+    </xs:complexType>
+
+</xs:schema>
