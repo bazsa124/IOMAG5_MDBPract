@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><konyvtar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="IOMAG5_XMLSchema_sajat.xsd">
+
+        <tag tKod="t1">
+            <nev>Módosított Elek</nev>
+            <lakcim>
+                <iranyitoszam>5600</iranyitoszam>
+                <utca>Alma</utca>
+                <hazszam>1</hazszam>
+            </lakcim>
+            <email>tesztelek@teszt.hu</email>
+            <telefonszam>06701231234</telefonszam>
+            <tagdij>500</tagdij>
+        </tag>
+
+        <tag tKod="t2">
+            <nev>Teszt Tímea</nev>
+            <lakcim>
+                <iranyitoszam>3300</iranyitoszam>
+                <utca>Körte</utca>
+                <hazszam>1</hazszam>
+            </lakcim>
+            <email>teszTimi@teszt.hu</email>
+            <telefonszam>06701231234</telefonszam>
+            <tagdij>1000</tagdij>
+        </tag>
+
+
+        <szamitogep szKod="sz1">
+            <operacios_rendszer>Windows 11</operacios_rendszer>
+            <tarhely>512 mb</tarhely>
+            <felszereltseg>Egér</felszereltseg>
+            <felszereltseg>Billentyűzet</felszereltseg>
+        </szamitogep>
+
+        <szamitogep szKod="sz2">
+            <operacios_rendszer>Mint Linux</operacios_rendszer>
+            <tarhely>1 Tb</tarhely>
+            <felszereltseg>Egér</felszereltseg>
+            <felszereltseg>Billentyűzet</felszereltseg>
+            <felszereltseg>Fejhallgató</felszereltseg>
+        </szamitogep>
+
+
+        <konyv kKod="k1">
+            <szerzo>Robert C. Martin</szerzo>
+            <cim>Clean Code</cim>
+            <kiado>Prentice Hall</kiado>
+            <kiadas_datuma>2012-01-01</kiadas_datuma>
+            <nyelv>Angol</nyelv>
+        </konyv>
+
+        <konyv kKod="k2">
+            <szerzo>George R.R. Martin</szerzo>
+            <cim>Songs of Fire and Ice</cim>
+            <kiado>Teszt Kiadó</kiado>
+            <kiadas_datuma>2010-01-01</kiadas_datuma>
+            <nyelv>Angol</nyelv>
+        </konyv>
+        
+        <konyv kKod="k3">
+            <szerzo>Frank Herbert</szerzo>
+            <cim>Dune</cim>
+            <kiado>Teszt Kiadó</kiado>
+            <kiadas_datuma>2013-01-01</kiadas_datuma>
+            <nyelv>Angol</nyelv>
+        </konyv>
+
+
+        <film fKod="f1">
+            <cim>Az oroszlánkirály</cim>
+            <kiado>Disney</kiado>
+            <megjelenes_datuma>1994-01-01</megjelenes_datuma>
+            <hossz>87</hossz>
+        </film>
+
+        <film fKod="f2">
+            <cim>Trója</cim>
+            <kiado>Warner Bros</kiado>
+            <megjelenes_datuma>2004-01-01</megjelenes_datuma>
+            <hossz>163</hossz>
+        </film>
+
+
+        <album aKod="a1">
+            <eloado>Bruno Mars</eloado>
+            <eloado>Katy Perry</eloado>
+            <cim>POP egyveleg</cim>
+            <kiado>Teszt Kiado</kiado>
+            <kiadas_eve>2019</kiadas_eve>
+            <mufaj>POP</mufaj>
+        </album>
+
+        <album aKod="a2">
+            <eloado>Jonas Testvérek</eloado>
+            <eloado>Lagzi Lajcsi</eloado>
+            <cim>Vegyes</cim>
+            <kiado>Teszt Kiado</kiado>
+            <kiadas_eve>2012</kiadas_eve>
+            <mufaj>vegyes</mufaj>
+        </album>
+
+
+        <dal dKod="d1">
+            <eloado/>
+            <cim/>
+            <hossz>187</hossz>
+            <kiado/>
+            <kiadas_eve>1000</kiadas_eve>
+        </dal>
+
+        <dal dKod="d2">
+            <eloado/>
+            <cim/>
+            <hossz>187</hossz>
+            <kiado/>
+            <kiadas_eve>1000</kiadas_eve>
+        </dal>
+
+
+        <hasznalat h_sz="sz1" t_h="t1">
+            <datum>2020-01-01</datum>
+            <hasznalat_ideje>67</hasznalat_ideje>
+        </hasznalat>
+
+        <hasznalat h_sz="sz1" t_h="t2">
+            <datum>2020-01-01</datum>
+            <hasznalat_ideje>67</hasznalat_ideje>
+        </hasznalat>
+
+
+        <igenyles i_k="k1" i_t="t1">
+            <beszer_ar>2990</beszer_ar>
+            <szallitasi_datum>2059-01-11</szallitasi_datum>
+            <igenylesi_datum>2012-03-13</igenylesi_datum>
+        </igenyles>
+
+
+        <k_kolcsonzes kk_k="k1" kk_t="t2">
+            <kezdet>2014-01-23</kezdet>
+            <veg>2051-01-01</veg>
+        </k_kolcsonzes>
+
+        
+        <f_kolcsonzes fk_f="f1" fk_t="t1">
+            <kezdet>2014-01-23</kezdet>
+            <veg>2051-01-01</veg>
+        </f_kolcsonzes>
+
+
+        <a_kolcsonzes ak_a="a1" ak_t="t1">
+            <kezdet>2014-01-23</kezdet>
+            <veg>2051-01-01</veg>
+        </a_kolcsonzes>
+
+
+        
+        
+
+    </konyvtar>
