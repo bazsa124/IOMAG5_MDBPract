@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<konyvtar>
+  <konyv kKod="k10">
+    <szerzo>Újonc Szerző (debütáló)</szerzo>
+    <cim>[ÚJ] LINQ to XML példa</cim>
+    <kiado>Új Kiadó</kiado>
+    <kiadas_datuma>2024-01-01</kiadas_datuma>
+    <nyelv>Magyar</nyelv>
+  </konyv>
+  <konyv kKod="k11">
+    <szerzo>Tapasztalt Szerző (debütáló)</szerzo>
+    <cim>[ÚJ] C# haladóknak</cim>
+    <kiado>Haladó Kiadó</kiado>
+    <kiadas_datuma>2023-06-15</kiadas_datuma>
+    <nyelv>Magyar</nyelv>
+  </konyv>
+</konyvtar>
