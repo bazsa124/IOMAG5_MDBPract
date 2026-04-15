@@ -1,0 +1,390 @@
+-- ============================================================
+-- TABLE + XML INSERT
+-- ============================================================
+
+CREATE TABLE konyvtar_xml (
+    id      NUMBER  GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    adat    XMLType
+);
+
+INSERT INTO konyvtar_xml (adat) VALUES (
+    XMLType('
+        <konyvtar>
+            <tag tKod="t1">
+                <nev>Teszt Elek</nev>
+                <lakcim>
+                    <iranyitoszam>5600</iranyitoszam>
+                    <utca>Alma</utca>
+                    <hazszam>1</hazszam>
+                </lakcim>
+                <email>tesztelek@teszt.hu</email>
+                <telefonszam>06701231234</telefonszam>
+                <tagdij>0</tagdij>
+            </tag>
+            <tag tKod="t2">
+                <nev>Teszt Tímea</nev>
+                <lakcim>
+                    <iranyitoszam>3300</iranyitoszam>
+                    <utca>Körte</utca>
+                    <hazszam>1</hazszam>
+                </lakcim>
+                <email>teszTimi@teszt.hu</email>
+                <telefonszam>06701231234</telefonszam>
+                <tagdij>1000</tagdij>
+            </tag>
+            <szamitogep szKod="sz1">
+                <operacios_rendszer>Windows 98</operacios_rendszer>
+                <tarhely>512 mb</tarhely>
+                <felszereltseg>Egér</felszereltseg>
+                <felszereltseg>Billentyuzet</felszereltseg>
+            </szamitogep>
+            <szamitogep szKod="sz2">
+                <operacios_rendszer>Mint Linux</operacios_rendszer>
+                <tarhely>1 Tb</tarhely>
+                <felszereltseg>Egér</felszereltseg>
+                <felszereltseg>Billentyuzet</felszereltseg>
+                <felszereltseg>Fejhallgato</felszereltseg>
+            </szamitogep>
+            <konyv kKod="k1">
+                <szerzo>Robert C. Martin</szerzo>
+                <cim>Clean Code</cim>
+                <kiado>Prentice Hall</kiado>
+                <kiadas_datuma>2012-01-01</kiadas_datuma>
+                <nyelv>Angol</nyelv>
+            </konyv>
+            <konyv kKod="k2">
+                <szerzo>George R.R. Martin</szerzo>
+                <cim>Songs of Fire and Ice</cim>
+                <kiado>Teszt Kiado</kiado>
+                <kiadas_datuma>2010-01-01</kiadas_datuma>
+                <nyelv>Angol</nyelv>
+            </konyv>
+            <konyv kKod="k3">
+                <szerzo>Frank Herbert</szerzo>
+                <cim>Dune</cim>
+                <kiado>Teszt Kiado</kiado>
+                <kiadas_datuma>2013-01-01</kiadas_datuma>
+                <nyelv>Angol</nyelv>
+            </konyv>
+            <film fKod="f1">
+                <cim>Az oroszlankiraly</cim>
+                <kiado>Disney</kiado>
+                <megjelenes_datuma>1994-01-01</megjelenes_datuma>
+                <hossz>87</hossz>
+            </film>
+            <film fKod="f2">
+                <cim>Troja</cim>
+                <kiado>Warner Bros</kiado>
+                <megjelenes_datuma>2004-01-01</megjelenes_datuma>
+                <hossz>163</hossz>
+            </film>
+            <album aKod="a1">
+                <eloado>Bruno Mars</eloado>
+                <eloado>Katy Perry</eloado>
+                <cim>POP egyveleg</cim>
+                <kiado>Teszt Kiado</kiado>
+                <kiadas_eve>2019</kiadas_eve>
+                <mufaj>POP</mufaj>
+            </album>
+            <album aKod="a2">
+                <eloado>Jonas Testverek</eloado>
+                <eloado>Lagzi Lajcsi</eloado>
+                <cim>Vegyes</cim>
+                <kiado>Teszt Kiado</kiado>
+                <kiadas_eve>2012</kiadas_eve>
+                <mufaj>vegyes</mufaj>
+            </album>
+            <dal dKod="d1">
+                <eloado>Ismeretlen</eloado>
+                <cim>Dal 1</cim>
+                <hossz>187</hossz>
+                <kiado>Teszt Kiado</kiado>
+                <kiadas_eve>2000</kiadas_eve>
+            </dal>
+            <dal dKod="d2">
+                <eloado>Ismeretlen</eloado>
+                <cim>Dal 2</cim>
+                <hossz>187</hossz>
+                <kiado>Teszt Kiado</kiado>
+                <kiadas_eve>2001</kiadas_eve>
+            </dal>
+            <hasznalat t_h="t1" h_sz="sz1">
+                <datum>2020-01-01</datum>
+                <hasznalat_ideje>67</hasznalat_ideje>
+            </hasznalat>
+            <hasznalat t_h="t2" h_sz="sz1">
+                <datum>2020-01-01</datum>
+                <hasznalat_ideje>67</hasznalat_ideje>
+            </hasznalat>
+            <igenyles i_t="t1" i_k="k1">
+                <beszer_ar>2990</beszer_ar>
+                <szallitasi_datum>2059-01-11</szallitasi_datum>
+                <igenylesi_datum>2012-03-13</igenylesi_datum>
+            </igenyles>
+            <k_kolcsonzes kk_t="t2" kk_k="k1">
+                <kezdet>2014-01-23</kezdet>
+                <veg>2051-01-01</veg>
+            </k_kolcsonzes>
+            <f_kolcsonzes fk_t="t1" fk_f="f1">
+                <kezdet>2014-01-23</kezdet>
+                <veg>2051-01-01</veg>
+            </f_kolcsonzes>
+            <a_kolcsonzes ak_t="t1" ak_a="a1">
+                <kezdet>2014-01-23</kezdet>
+                <veg>2051-01-01</veg>
+            </a_kolcsonzes>
+            <tartalmaz ta_a="a1" ta_d="d1" />
+            <tartalmaz ta_a="a1" ta_d="d2" />
+        </konyvtar>')
+);
+COMMIT;
+
+-- ============================================================
+-- Task 1/a – Összes könyv lekérdezése XMLTABLE-lel
+-- ============================================================
+
+SELECT
+    x.kkod,
+    x.szerzo,
+    x.cim,
+    x.kiado,
+    x.kiadas_datuma,
+    x.nyelv
+FROM konyvtar_xml k,
+    XMLTABLE('/konyvtar/konyv'
+        PASSING k.adat
+        COLUMNS
+            kkod           VARCHAR2(10)  PATH '@kKod',
+            szerzo         VARCHAR2(200) PATH 'szerzo',
+            cim            VARCHAR2(200) PATH 'cim',
+            kiado          VARCHAR2(200) PATH 'kiado',
+            kiadas_datuma  VARCHAR2(20)  PATH 'kiadas_datuma',
+            nyelv          VARCHAR2(50)  PATH 'nyelv'
+    ) x;
+
+-- ============================================================
+-- Task 1/b – Csak az angol nyelvű könyvek
+-- ============================================================
+
+SELECT
+    x.kkod,
+    x.szerzo,
+    x.cim,
+    x.nyelv
+FROM konyvtar_xml k,
+    XMLTABLE('/konyvtar/konyv'
+        PASSING k.adat
+        COLUMNS
+            kkod   VARCHAR2(10)  PATH '@kKod',
+            szerzo VARCHAR2(200) PATH 'szerzo',
+            cim    VARCHAR2(200) PATH 'cim',
+            nyelv  VARCHAR2(50)  PATH 'nyelv'
+    ) x
+WHERE x.nyelv = 'Angol';
+
+-- ============================================================
+-- Task 1/c – Tagok és a kölcsönzött könyveik (JOIN)
+-- ============================================================
+
+SELECT
+    t.tkod,
+    t.nev           AS tag_neve,
+    k.kkod,
+    k.cim           AS konyv_cime,
+    kk.kezdet,
+    kk.veg
+FROM konyvtar_xml kx,
+    XMLTABLE('/konyvtar/tag'
+        PASSING kx.adat
+        COLUMNS
+            tkod VARCHAR2(10)  PATH '@tKod',
+            nev  VARCHAR2(200) PATH 'nev'
+    ) t
+JOIN
+    XMLTABLE('/konyvtar/k_kolcsonzes'
+        PASSING kx.adat
+        COLUMNS
+            kk_t   VARCHAR2(10) PATH '@kk_t',
+            kk_k   VARCHAR2(10) PATH '@kk_k',
+            kezdet VARCHAR2(20) PATH 'kezdet',
+            veg    VARCHAR2(20) PATH 'veg'
+    ) kk ON t.tkod = kk.kk_t
+JOIN
+    XMLTABLE('/konyvtar/konyv'
+        PASSING kx.adat
+        COLUMNS
+            kkod VARCHAR2(10)  PATH '@kKod',
+            cim  VARCHAR2(200) PATH 'cim'
+    ) k ON kk.kk_k = k.kkod;
+
+-- ============================================================
+-- Task 2/a – lakcim_t objektumtípus
+-- ============================================================
+
+CREATE OR REPLACE TYPE lakcim_t AS OBJECT (
+    iranyitoszam VARCHAR2(10),
+    utca         VARCHAR2(200),
+    hazszam      VARCHAR2(20)
+);
+/
+
+-- ============================================================
+-- Task 2/b – tag_t objektumtípus lakcim_t-vel és member functionnel
+-- ============================================================
+
+CREATE OR REPLACE TYPE tag_t AS OBJECT (
+    tkod         VARCHAR2(10),
+    nev          VARCHAR2(200),
+    lakcim       lakcim_t,
+    email        VARCHAR2(200),
+    telefonszam  VARCHAR2(50),
+    tagdij       NUMBER,
+
+    MEMBER FUNCTION leiras RETURN VARCHAR2
+);
+/
+
+-- ============================================================
+-- Task 2/c – tag_t TYPE BODY implementáció
+-- ============================================================
+
+CREATE OR REPLACE TYPE BODY tag_t AS
+    MEMBER FUNCTION leiras RETURN VARCHAR2 IS
+    BEGIN
+        RETURN SELF.nev || ' (tagdíj: ' || SELF.tagdij || ' Ft) – ' || SELF.lakcim.iranyitoszam || ' ' || SELF.lakcim.utca;
+    END;
+END;
+/
+
+-- ============================================================
+-- Task 3/a – tagok objektumtábla
+-- ============================================================
+
+CREATE TABLE tagok OF tag_t (
+    PRIMARY KEY (tkod)
+);
+
+-- ============================================================
+-- Task 3/b – XML adatok betöltése tagok táblába
+-- ============================================================
+
+INSERT INTO tagok
+SELECT tag_t(
+    x.tkod,
+    x.nev,
+    lakcim_t(x.iranyitoszam, x.utca, x.hazszam),
+    x.email,
+    x.telefonszam,
+    x.tagdij
+)
+FROM konyvtar_xml k,
+    XMLTABLE('/konyvtar/tag'
+        PASSING k.adat
+        COLUMNS
+            tkod         VARCHAR2(10)  PATH '@tKod',
+            nev          VARCHAR2(200) PATH 'nev',
+            iranyitoszam VARCHAR2(10)  PATH 'lakcim/iranyitoszam',
+            utca         VARCHAR2(200) PATH 'lakcim/utca',
+            hazszam      VARCHAR2(20)  PATH 'lakcim/hazszam',
+            email        VARCHAR2(200) PATH 'email',
+            telefonszam  VARCHAR2(50)  PATH 'telefonszam',
+            tagdij       NUMBER        PATH 'tagdij'
+    ) x;
+
+-- ============================================================
+-- Task 3/c – tagok tábla lekérdezése dot-notation-nel
+-- ============================================================
+
+SELECT
+    t.tkod,
+    t.nev,
+    t.tagdij,
+    t.lakcim.iranyitoszam,
+    t.lakcim.utca,
+    t.email
+FROM tagok t;
+
+-- ============================================================
+-- Task 4/a – leiras() member function hívása
+-- ============================================================
+
+SELECT t.leiras() AS leiras FROM tagok t;
+
+-- ============================================================
+-- Task 4/b – városonkénti átlag tagdíj, csökkenő sorrendben
+-- ============================================================
+
+SELECT
+    t.lakcim.iranyitoszam   AS iranyitoszam,
+    t.lakcim.utca           AS utca,
+    COUNT(*)                AS db,
+    AVG(t.tagdij)           AS atlag_tagdij
+FROM tagok t
+GROUP BY t.lakcim.iranyitoszam, t.lakcim.utca
+ORDER BY atlag_tagdij DESC;
+
+-- ============================================================
+-- Task 5/a – tagdíj módosítása egy tagnál
+-- ============================================================
+
+UPDATE tagok t
+    SET t.tagdij = 500
+WHERE t.tkod = 't1';
+
+-- ============================================================
+-- Task 5/b – ingyenes tagok törlése, maradék megszámlálása
+-- ============================================================
+
+DELETE FROM tagok t
+    WHERE t.tagdij = 0;
+
+SELECT COUNT(*) AS maradt FROM tagok;
+
+-- ============================================================
+-- Task 6/a – felszereltseg_va VARRAY típus
+-- ============================================================
+
+CREATE OR REPLACE TYPE felszereltseg_va AS VARRAY(10) OF VARCHAR2(200);
+/
+
+-- ============================================================
+-- Task 6/b – szamitogep_t objektumtípus
+-- ============================================================
+
+CREATE OR REPLACE TYPE szamitogep_t AS OBJECT (
+    szkod                VARCHAR2(10),
+    operacios_rendszer   VARCHAR2(200),
+    tarhely              VARCHAR2(100),
+    felszereltsegek      felszereltseg_va
+);
+/
+
+CREATE TABLE szamitogepek OF szamitogep_t (
+    szkod PRIMARY KEY
+);
+
+-- ============================================================
+-- Task 6/c – szamitogepek feltöltése manuálisan
+-- ============================================================
+
+INSERT INTO szamitogepek VALUES (
+    szamitogep_t('sz1', 'Windows 98', '512 mb',
+        felszereltseg_va('Egér', 'Billentyűzet'))
+);
+
+INSERT INTO szamitogepek VALUES (
+    szamitogep_t('sz2', 'Mint Linux', '1 Tb',
+        felszereltseg_va('Egér', 'Billentyűzet', 'Fejhallgató'))
+);
+
+-- ============================================================
+-- Task 6/d – felszereltségek kibontása TABLE() operátorral
+-- ============================================================
+
+SELECT
+    s.szkod,
+    s.operacios_rendszer,
+    s.tarhely,
+    f.COLUMN_VALUE AS felszereltseg
+FROM szamitogepek s,
+    TABLE(s.felszereltsegek) f;

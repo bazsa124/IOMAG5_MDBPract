@@ -1,0 +1,36 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IOMAG5_0325", "IOMAG5_0325", "{1ADC0D0D-F465-E999-6D89-E8634C15773A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "etterem", "IOMAG5_0325\etterem\etterem.csproj", "{F038FA77-ED66-7A66-18C8-72E02F9B75B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sajat", "IOMAG5_0325\sajat\sajat.csproj", "{AA13538D-E747-BB64-3991-AE5DEE5A3781}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F038FA77-ED66-7A66-18C8-72E02F9B75B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F038FA77-ED66-7A66-18C8-72E02F9B75B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F038FA77-ED66-7A66-18C8-72E02F9B75B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F038FA77-ED66-7A66-18C8-72E02F9B75B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA13538D-E747-BB64-3991-AE5DEE5A3781}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA13538D-E747-BB64-3991-AE5DEE5A3781}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA13538D-E747-BB64-3991-AE5DEE5A3781}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA13538D-E747-BB64-3991-AE5DEE5A3781}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F038FA77-ED66-7A66-18C8-72E02F9B75B9} = {1ADC0D0D-F465-E999-6D89-E8634C15773A}
+		{AA13538D-E747-BB64-3991-AE5DEE5A3781} = {1ADC0D0D-F465-E999-6D89-E8634C15773A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F976F5BF-BB3A-40E2-A9AD-BFBA68FF1ED6}
+	EndGlobalSection
+EndGlobal

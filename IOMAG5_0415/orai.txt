@@ -1,0 +1,127 @@
+//Task 1
+
+CREATE OR REPLACE TYPE szemely_t AS OBJECT (
+    nev VARCHAR2(100),
+    MEMBER FUNCTION bemutatkozik RETURN VARCHAR2,
+    STATIC FUNCTION get_min_munkakor RETURN NUMBER,
+    ORDER MEMBER FUNCTION hasonlit(masik_szemely IN szemely_t) RETURN INTEGER
+) NOT FINAL;
+
+CREATE OR REPLACE TYPE BODY szemely_t AS
+    MEMBER FUNCTION bemutatkozik RETURN VARCHAR2 IS
+    BEGIN
+        RETURN 'A nevem: ' || self.nev;
+    END;
+    
+    STATIC FUNCTION get_min_munkakor RETURN NUMBER IS
+    BEGIN
+        RETURN 18;
+    END;
+
+    ORDER MEMBER FUNCTION hasonlit(masik_szemely IN szemely_t) RETURN INTEGER IS
+    BEGIN
+        IF self.nev < masik_szemely.nev THEN
+            RETURN -1;
+        ELSIF self.nev > masik_szemely.nev THEN
+            RETURN 1;
+        ELSE
+            RETURN 0;
+        END IF;
+    END;
+END;
+
+// TASK 2
+
+CREATE OR REPLACE TYPE foszakacs_t UNDER szemely_t (
+    fkod VARCHAR2(10),
+    eletkor NUMBER,
+    OVERRIDING MEMBER FUNCTION bemutatkozik RETURN VARCHAR2
+);
+
+CREATE OR REPLACE TYPE BODY foszakacs_t AS
+    OVERRIDING MEMBER FUNCTION bemutatkozik RETURN VARCHAR2 IS
+    BEGIN
+        RETURN 'Főszakács vagyok. A nevem: ' || self.nev || ', korom: ' || self.eletkor;
+    END;
+END;
+
+CREATE OR REPLACE TYPE vendeg_t UNDER szemely_t (
+    vkod VARCHAR2(10),
+    eletkor NUMBER,
+    OVERRIDING MEMBER FUNCTION bemutatkozik RETURN VARCHAR2
+);
+
+CREATE OR REPLACE TYPE BODY vendeg_t AS
+    OVERRIDING MEMBER FUNCTION bemutatkozik RETURN VARCHAR2 IS
+    BEGIN
+        RETURN 'Vendég vagyok. A nevem: ' || self.nev || '.';
+    END;
+END;
+
+//TAKS 3.
+
+CREATE TABLE etterem_szemelyek_tbl OF szemely_t;
+
+INSERT INTO etterem_szemelyek_tbl
+SELECT vendeg_t(xt.nev, xt.vkod, xt.eletkor)
+FROM VENDEGLATAS_XML_2 v,
+     XMLTABLE('/vendeglatas/vendeg'
+              PASSING v.adat
+              COLUMNS
+                nev     VARCHAR2(100) PATH 'nev',
+                vkod    VARCHAR2(10)  PATH '@vkod',
+                eletkor NUMBER        PATH 'eletkor'
+             ) xt;
+
+//TASK 4.
+
+SELECT szemely_t.get_min_munkakor() AS minimalis_eletkor 
+FROM DUAL;
+
+SELECT 
+    s.nev, 
+    s.bemutatkozik() AS bemutatkozas
+FROM etterem_szemelyek_tbl s
+ORDER BY VALUE(s);
+
+SELECT s.nev
+FROM etterem_szemelyek_tbl s
+WHERE VALUE(s) IS OF (vendeg_t);
+
+SELECT 
+    s.nev, 
+    TREAT(VALUE(s) AS vendeg_t).eletkor AS vendeg_eletkora
+FROM etterem_szemelyek_tbl s
+WHERE VALUE(s) IS OF (vendeg_t);
+
+//TASK 5
+
+CREATE OR REPLACE TYPE szakacs2_t UNDER szemely_t (
+    szkod VARCHAR2(10),
+    reszleg VARCHAR2(50),
+    OVERRIDING MEMBER FUNCTION bemutatkozik RETURN VARCHAR2
+);
+
+CREATE OR REPLACE TYPE BODY szakacs2_t AS
+    OVERRIDING MEMBER FUNCTION bemutatkozik RETURN VARCHAR2 IS
+    BEGIN
+        RETURN 'Szakács vagyok a(z) ' || self.reszleg || ' részlegen, a nevem: ' || self.nev;
+    END;
+END;
+
+INSERT INTO etterem_szemelyek_tbl
+SELECT szakacs2_t(xt.nev, xt.szkod, xt.reszleg)
+FROM VENDEGLATAS_XML_2 v,
+     XMLTABLE('/vendeglatas/szakacs'
+              PASSING v.adat
+              COLUMNS
+                nev     VARCHAR2(100) PATH 'nev',
+                szkod   VARCHAR2(10)  PATH '@szkod',
+                reszleg VARCHAR2(50)  PATH 'reszleg'
+             ) xt;
+
+SELECT 
+    s.nev, 
+    s.bemutatkozik() AS bemutatkozas
+FROM etterem_szemelyek_tbl s
+WHERE VALUE(s) IS OF (foszakacs_t, szakacs2_t);
