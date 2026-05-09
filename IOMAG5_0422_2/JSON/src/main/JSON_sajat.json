@@ -1,0 +1,155 @@
+{
+	"konyvtar": {
+		"tag": [
+			{
+				"nev": "Teszt Elek",
+				"lakcim": {
+					"iranyitoszam": "5600",
+					"utca": "Alma",
+					"hazszam": "1"
+				},
+				"email": "tesztelek@teszt.hu",
+				"telefonszam": "06701231234",
+				"tagdij": "0",
+				"_tkod": "t1"
+			},
+			{
+				"nev": "Teszt Tímea",
+				"lakcim": {
+					"iranyitoszam": "3300",
+					"utca": "Körte",
+					"hazszam": "1"
+				},
+				"email": "teszTimi@teszt.hu",
+				"telefonszam": "06701231234",
+				"tagdij": "1000",
+				"_tkod": "t2"
+			}
+		],
+		"szamitogep": [
+			{
+				"operacios_rendszer": "Windows 98",
+				"tarhely": "512 mb",
+				"felszereltseg": [
+					"Egér",
+					"Billentyűzet"
+				],
+				"_szkod": "sz1"
+			},
+			{
+				"operacios_rendszer": "Mint Linux",
+				"tarhely": "1 Tb",
+				"felszereltseg": [
+					"Egér",
+					"Billentyűzet",
+					"Fejhallgató"
+				],
+				"_szkod": "sz2"
+			}
+		],
+		"konyv": [
+			{
+				"szerzo": "Robert C. Martin",
+				"cim": "Clean Code",
+				"kiado": "Prentice Hall",
+				"kiadas_datuma": "2012-01-01",
+				"nyelv": "Angol",
+				"_kkod": "k1"
+			},
+			{
+				"szerzo": "George R.R. Martin",
+				"cim": "Songs of Fire and Ice",
+				"kiado": "Teszt Kiadó",
+				"kiadas_datuma": "2010-01-01",
+				"nyelv": "Angol",
+				"_kkod": "k2"
+			},
+			{
+				"szerzo": "Frank Herbert",
+				"cim": "Dune",
+				"kiado": "Teszt Kiadó",
+				"kiadas_datuma": "2013-01-01",
+				"nyelv": "Angol",
+				"_kkod": "k3"
+			}
+		],
+		"film": [
+			{
+				"cim": "Az oroszlánkirály",
+				"kiado": "Disney",
+				"megjelenes_datuma": "1994-01-01",
+				"hossz": "87",
+				"_fkod": "f1"
+			},
+			{
+				"cim": "Trója",
+				"kiado": "Warner Bros",
+				"megjelenes_datuma": "2004-01-01",
+				"hossz": "163",
+				"_fkod": "f2"
+			}
+		],
+		"album": [
+			{
+				"eloado": [
+					"Bruno Mars",
+					"Katy Perry"
+				],
+				"cim": "POP egyveleg",
+				"kiado": "Teszt Kiado",
+				"kiadas_eve": "2019",
+				"mufaj": "POP",
+				"_akod": "a1"
+			},
+			{
+				"eloado": [
+					"Jonas Testvérek",
+					"Lagzi Lajcsi"
+				],
+				"cim": "Vegyes",
+				"kiado": "Teszt Kiado",
+				"kiadas_eve": "2012",
+				"mufaj": "vegyes",
+				"_akod": "a2"
+			}
+		],
+		"k_kolcsonzes": [
+			{
+				"kezdet": "2014-01-23",
+				"veg": "2051-01-01",
+				"_tkod": "t2",
+				"_kkod": "k1"
+			}
+		],
+		"f_kolcsonzes": [
+			{
+				"kezdet": "2014-01-23",
+				"veg": "2051-01-01",
+				"_tkod": "t1",
+				"_fkod": "f1"
+			}
+		],
+		"a_kolcsonzes": [
+			{
+				"kezdet": "2014-01-23",
+				"veg": "2051-01-01",
+				"_tkod": "t1",
+				"_akod": "a1"
+			}
+		],
+		"hasznalat": [
+			{
+				"datum": "2020-01-01",
+				"hasznalat_ideje": "67",
+				"_tkod": "t1",
+				"_szkod": "sz1"
+			},
+			{
+				"datum": "2020-01-01",
+				"hasznalat_ideje": "67",
+				"_tkod": "t2",
+				"_szkod": "sz1"
+			}
+		]
+	}
+}

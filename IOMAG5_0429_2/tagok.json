@@ -1,0 +1,90 @@
+{"TempList": [
+    {
+        "nev": "Teszt Elek",
+        "lakcim": {
+            "iranyitoszam": "5600",
+            "utca": "Alma",
+            "hazszam": "1"
+        },
+        "email": "tesztelek@teszt.hu",
+        "telefonszam": "06701231234",
+        "tagdij": "0",
+        "kor": "28",
+        "kedvenc_kiado": "Prentice Hall",
+        "erdeklodesek": [
+            "programozás",
+            "sci-fi"
+        ],
+        "tkod": "t1"
+    },
+    {
+        "nev": "Teszt Tímea",
+        "lakcim": {
+            "iranyitoszam": "3300",
+            "utca": "Körte",
+            "hazszam": "1"
+        },
+        "email": "teszTimi@teszt.hu",
+        "telefonszam": "06701231234",
+        "tagdij": "1000",
+        "kor": "35",
+        "kedvenc_kiado": "Teszt Kiadó",
+        "erdeklodesek": [
+            "fantasy",
+            "történelem"
+        ],
+        "tkod": "t2"
+    },
+    {
+        "nev": "Kiss Péter",
+        "lakcim": {
+            "iranyitoszam": "1011",
+            "utca": "Fő",
+            "hazszam": "12"
+        },
+        "email": "kisspeter@teszt.hu",
+        "telefonszam": "06309876543",
+        "tagdij": "500",
+        "kor": "41",
+        "kedvenc_kiado": "Prentice Hall",
+        "erdeklodesek": [
+            "fantasy",
+            "történelem",
+            "sci-fi"
+        ],
+        "tkod": "t3"
+    },
+    {
+        "nev": "Nagy Anna",
+        "lakcim": {
+            "iranyitoszam": "6720",
+            "utca": "Dugonics tér",
+            "hazszam": "5"
+        },
+        "email": "nagyanna@teszt.hu",
+        "telefonszam": "06201234567",
+        "tagdij": "2000",
+        "kor": "22",
+        "kedvenc_kiado": "Teszt Kiadó",
+        "erdeklodesek": [
+            "kaland",
+            "sci-fi"
+        ],
+        "tkod": "t4"
+    },
+    {
+        "nev": "Horváth Balázs",
+        "lakcim": {
+            "iranyitoszam": "4024",
+            "utca": "Kossuth",
+            "hazszam": "8"
+        },
+        "email": "horvathb@teszt.hu",
+        "telefonszam": "06701112233",
+        "tagdij": "1500",
+        "kor": "38",
+        "kedvenc_kiado": "Prentice Hall",
+        "erdeklodesek": "programozás",
+        "tkod": "t5"
+    }
+]}

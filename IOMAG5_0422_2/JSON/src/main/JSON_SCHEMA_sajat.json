@@ -1,0 +1,285 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "konyvtar": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "nev": { "type": "string" },
+                "lakcim": {
+                  "type": "object",
+                  "properties": {
+                    "iranyitoszam": { "type": "string" },
+                    "utca": { "type": "string" },
+                    "hazszam": { "type": "string" }
+                  },
+                  "required": ["iranyitoszam", "utca", "hazszam"]
+                },
+                "email": { "type": "string" },
+                "telefonszam": { "type": "string" },
+                "tagdij": { "type": "string" },
+                "_tkod": { "type": "string" }
+              },
+              "required": ["nev", "lakcim", "email", "telefonszam", "tagdij", "_tkod"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "nev": { "type": "string" },
+                "lakcim": {
+                  "type": "object",
+                  "properties": {
+                    "iranyitoszam": { "type": "string" },
+                    "utca": { "type": "string" },
+                    "hazszam": { "type": "string" }
+                  },
+                  "required": ["iranyitoszam", "utca", "hazszam"]
+                },
+                "email": { "type": "string" },
+                "telefonszam": { "type": "string" },
+                "tagdij": { "type": "string" },
+                "_tkod": { "type": "string" }
+              },
+              "required": ["nev", "lakcim", "email", "telefonszam", "tagdij", "_tkod"]
+            }
+          ]
+        },
+        "szamitogep": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "operacios_rendszer": { "type": "string" },
+                "tarhely": { "type": "string" },
+                "felszereltseg": {
+                  "type": "array",
+                  "items": [
+                    { "type": "string" },
+                    { "type": "string" }
+                  ]
+                },
+                "_szkod": { "type": "string" }
+              },
+              "required": ["operacios_rendszer", "tarhely", "felszereltseg", "_szkod"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "operacios_rendszer": { "type": "string" },
+                "tarhely": { "type": "string" },
+                "felszereltseg": {
+                  "type": "array",
+                  "items": [
+                    { "type": "string" },
+                    { "type": "string" },
+                    { "type": "string" }
+                  ]
+                },
+                "_szkod": { "type": "string" }
+              },
+              "required": ["operacios_rendszer", "tarhely", "felszereltseg", "_szkod"]
+            }
+          ]
+        },
+        "konyv": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "szerzo": { "type": "string" },
+                "cim": { "type": "string" },
+                "kiado": { "type": "string" },
+                "kiadas_datuma": { "type": "string" },
+                "nyelv": { "type": "string" },
+                "_kkod": { "type": "string" }
+              },
+              "required": ["szerzo", "cim", "kiado", "kiadas_datuma", "nyelv", "_kkod"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "szerzo": { "type": "string" },
+                "cim": { "type": "string" },
+                "kiado": { "type": "string" },
+                "kiadas_datuma": { "type": "string" },
+                "nyelv": { "type": "string" },
+                "_kkod": { "type": "string" }
+              },
+              "required": ["szerzo", "cim", "kiado", "kiadas_datuma", "nyelv", "_kkod"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "szerzo": { "type": "string" },
+                "cim": { "type": "string" },
+                "kiado": { "type": "string" },
+                "kiadas_datuma": { "type": "string" },
+                "nyelv": { "type": "string" },
+                "_kkod": { "type": "string" }
+              },
+              "required": ["szerzo", "cim", "kiado", "kiadas_datuma", "nyelv", "_kkod"]
+            }
+          ]
+        },
+        "film": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "cim": { "type": "string" },
+                "kiado": { "type": "string" },
+                "megjelenes_datuma": { "type": "string" },
+                "hossz": { "type": "string" },
+                "_fkod": { "type": "string" }
+              },
+              "required": ["cim", "kiado", "megjelenes_datuma", "hossz", "_fkod"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "cim": { "type": "string" },
+                "kiado": { "type": "string" },
+                "megjelenes_datuma": { "type": "string" },
+                "hossz": { "type": "string" },
+                "_fkod": { "type": "string" }
+              },
+              "required": ["cim", "kiado", "megjelenes_datuma", "hossz", "_fkod"]
+            }
+          ]
+        },
+        "album": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "eloado": {
+                  "type": "array",
+                  "items": [
+                    { "type": "string" },
+                    { "type": "string" }
+                  ]
+                },
+                "cim": { "type": "string" },
+                "kiado": { "type": "string" },
+                "kiadas_eve": { "type": "string" },
+                "mufaj": { "type": "string" },
+                "_akod": { "type": "string" }
+              },
+              "required": ["eloado", "cim", "kiado", "kiadas_eve", "mufaj", "_akod"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "eloado": {
+                  "type": "array",
+                  "items": [
+                    { "type": "string" },
+                    { "type": "string" }
+                  ]
+                },
+                "cim": { "type": "string" },
+                "kiado": { "type": "string" },
+                "kiadas_eve": { "type": "string" },
+                "mufaj": { "type": "string" },
+                "_akod": { "type": "string" }
+              },
+              "required": ["eloado", "cim", "kiado", "kiadas_eve", "mufaj", "_akod"]
+            }
+          ]
+        },
+        "k_kolcsonzes": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "kezdet": { "type": "string" },
+                "veg": { "type": "string" },
+                "_tkod": { "type": "string" },
+                "_kkod": { "type": "string" }
+              },
+              "required": ["kezdet", "veg", "_tkod", "_kkod"]
+            }
+          ]
+        },
+        "f_kolcsonzes": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "kezdet": { "type": "string" },
+                "veg": { "type": "string" },
+                "_tkod": { "type": "string" },
+                "_fkod": { "type": "string" }
+              },
+              "required": ["kezdet", "veg", "_tkod", "_fkod"]
+            }
+          ]
+        },
+        "a_kolcsonzes": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "kezdet": { "type": "string" },
+                "veg": { "type": "string" },
+                "_tkod": { "type": "string" },
+                "_akod": { "type": "string" }
+              },
+              "required": ["kezdet", "veg", "_tkod", "_akod"]
+            }
+          ]
+        },
+        "hasznalat": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "datum": { "type": "string" },
+                "hasznalat_ideje": { "type": "string" },
+                "_tkod": { "type": "string" },
+                "_szkod": { "type": "string" }
+              },
+              "required": ["datum", "hasznalat_ideje", "_tkod", "_szkod"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "datum": { "type": "string" },
+                "hasznalat_ideje": { "type": "string" },
+                "_tkod": { "type": "string" },
+                "_szkod": { "type": "string" }
+              },
+              "required": ["datum", "hasznalat_ideje", "_tkod", "_szkod"]
+            }
+          ]
+        }
+      },
+      "required": [
+        "tag",
+        "szamitogep",
+        "konyv",
+        "film",
+        "album",
+        "k_kolcsonzes",
+        "f_kolcsonzes",
+        "a_kolcsonzes",
+        "hasznalat"
+      ]
+    }
+  },
+  "required": ["konyvtar"]
+}

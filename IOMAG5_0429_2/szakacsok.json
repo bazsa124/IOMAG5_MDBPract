@@ -1,0 +1,46 @@
+{"TempList": [
+    {
+        "nev": "Havas Péter",
+        "eletkor": "35",
+        "vegzettseg": [
+            "Szakközépiskola",
+            "Paul Bouse Institute"
+        ],
+        "sz_kod": "sz1",
+        "e_sz": "e1"
+    },
+    {
+        "nev": "Nagy Károly",
+        "eletkor": "40",
+        "vegzettseg": "Le Cordon Blue",
+        "sz_kod": "sz2",
+        "e_sz": "e2"
+    },
+    {
+        "nev": "Kovács Adél",
+        "eletkor": "28",
+        "vegzettseg": [
+            "Gundel Károly Vendéglátóipari Technikum",
+            "BGE - Turizmus-vendéglátás"
+        ],
+        "sz_kod": "sz3",
+        "e_sz": "e3"
+    },
+    {
+        "nev": "Szabó Márton",
+        "eletkor": "45",
+        "vegzettseg": "Culinary Institute of America",
+        "sz_kod": "sz4",
+        "e_sz": "e4"
+    },
+    {
+        "nev": "Tóth Eszter",
+        "eletkor": "32",
+        "vegzettseg": [
+            "Szakácsiskola",
+            "WSET Sommelier képzés"
+        ],
+        "sz_kod": "sz5",
+        "e_sz": "e5"
+    }
+]}

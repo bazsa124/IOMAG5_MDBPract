@@ -1,0 +1,52 @@
+{"TempList": [
+    {
+        "nev": "Trófea",
+        "cim": {
+            "varos": "Budapest",
+            "utca": "Visegrádi",
+            "hazszam": "15"
+        },
+        "csillag": "4",
+        "ekod": "e1"
+    },
+    {
+        "nev": "Gundel",
+        "cim": {
+            "varos": "Budapest",
+            "utca": "Gundel Károly út",
+            "hazszam": "4"
+        },
+        "csillag": "5",
+        "ekod": "e2"
+    },
+    {
+        "nev": "Borkonyha",
+        "cim": {
+            "varos": "Budapest",
+            "utca": "Sas utca",
+            "hazszam": "3"
+        },
+        "csillag": "5",
+        "ekod": "e3"
+    },
+    {
+        "nev": "Menza",
+        "cim": {
+            "varos": "Budapest",
+            "utca": "Liszt Ferenc tér",
+            "hazszam": "2"
+        },
+        "csillag": "4",
+        "ekod": "e4"
+    },
+    {
+        "nev": "Rosenstein",
+        "cim": {
+            "varos": "Budapest",
+            "utca": "Mosonyi utca",
+            "hazszam": "3"
+        },
+        "csillag": "5",
+        "ekod": "e5"
+    }
+]}

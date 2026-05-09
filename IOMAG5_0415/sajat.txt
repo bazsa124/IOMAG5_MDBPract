@@ -1,0 +1,138 @@
+//Task 1
+
+CREATE OR REPLACE TYPE media_t AS OBJECT (
+    cim VARCHAR2(100),
+    MEMBER FUNCTION bemutatkozik RETURN VARCHAR2,
+    STATIC FUNCTION get_min_kolcsonzes_nap RETURN NUMBER,
+    ORDER MEMBER FUNCTION hasonlit(masik_media IN media_t) RETURN INTEGER
+) NOT FINAL;
+
+CREATE OR REPLACE TYPE BODY media_t AS
+    MEMBER FUNCTION bemutatkozik RETURN VARCHAR2 IS
+    BEGIN
+        RETURN 'A cím: ' || self.cim;
+    END;
+
+    STATIC FUNCTION get_min_kolcsonzes_nap RETURN NUMBER IS
+    BEGIN
+        RETURN 7;
+    END;
+
+    ORDER MEMBER FUNCTION hasonlit(masik_media IN media_t) RETURN INTEGER IS
+    BEGIN
+        IF self.cim < masik_media.cim THEN
+            RETURN -1;
+        ELSIF self.cim > masik_media.cim THEN
+            RETURN 1;
+        ELSE
+            RETURN 0;
+        END IF;
+    END;
+END;
+
+//Task 2
+
+CREATE OR REPLACE TYPE konyv_t UNDER media_t (
+    kkod VARCHAR2(10),
+    szerzo VARCHAR2(100),
+    OVERRIDING MEMBER FUNCTION bemutatkozik RETURN VARCHAR2
+);
+
+CREATE OR REPLACE TYPE BODY konyv_t AS
+    OVERRIDING MEMBER FUNCTION bemutatkozik RETURN VARCHAR2 IS
+    BEGIN
+        RETURN 'Könyv vagyok. A címem: ' || self.cim || ', szerzőm: ' || self.szerzo;
+    END;
+END;
+
+CREATE OR REPLACE TYPE film_t UNDER media_t (
+    fkod VARCHAR2(10),
+    hossz NUMBER,
+    OVERRIDING MEMBER FUNCTION bemutatkozik RETURN VARCHAR2
+);
+
+CREATE OR REPLACE TYPE BODY film_t AS
+    OVERRIDING MEMBER FUNCTION bemutatkozik RETURN VARCHAR2 IS
+    BEGIN
+        RETURN 'Film vagyok. A címem: ' || self.cim || ', hossz: ' || self.hossz || ' perc.';
+    END;
+END;
+
+//Task 3
+
+CREATE TABLE konyvtar_mediak_tbl OF media_t;
+
+INSERT INTO konyvtar_mediak_tbl
+SELECT konyv_t(xt.cim, xt.kkod, xt.szerzo)
+FROM KONYVTAR_XML v,
+     XMLTABLE('/konyvtar/konyv'
+              PASSING v.adat
+              COLUMNS
+                cim    VARCHAR2(100) PATH 'cim',
+                kkod   VARCHAR2(10)  PATH '@kKod',
+                szerzo VARCHAR2(100) PATH 'szerzo'
+             ) xt;
+
+INSERT INTO konyvtar_mediak_tbl
+SELECT film_t(xt.cim, xt.fkod, xt.hossz)
+FROM KONYVTAR_XML v,
+     XMLTABLE('/konyvtar/film'
+              PASSING v.adat
+              COLUMNS
+                cim    VARCHAR2(100) PATH 'cim',
+                fkod   VARCHAR2(10)  PATH '@fKod',
+                hossz  NUMBER        PATH 'hossz'
+             ) xt;
+
+//Task 4
+
+SELECT media_t.get_min_kolcsonzes_nap() AS minimalis_kolcsonzes_nap
+FROM DUAL;
+
+SELECT
+    m.cim,
+    m.bemutatkozik() AS bemutatkozas
+FROM konyvtar_mediak_tbl m
+ORDER BY VALUE(m);
+
+SELECT m.cim
+FROM konyvtar_mediak_tbl m
+WHERE VALUE(m) IS OF (film_t);
+
+SELECT
+    m.cim,
+    TREAT(VALUE(m) AS film_t).hossz AS film_hossza
+FROM konyvtar_mediak_tbl m
+WHERE VALUE(m) IS OF (film_t);
+
+//Task 5
+
+CREATE OR REPLACE TYPE album_t UNDER media_t (
+    akod VARCHAR2(10),
+    mufaj VARCHAR2(50),
+    OVERRIDING MEMBER FUNCTION bemutatkozik RETURN VARCHAR2
+);
+
+CREATE OR REPLACE TYPE BODY album_t AS
+    OVERRIDING MEMBER FUNCTION bemutatkozik RETURN VARCHAR2 IS
+    BEGIN
+        RETURN 'Album vagyok a(z) ' || self.mufaj || ' műfajban, a címem: ' || self.cim;
+    END;
+END;
+
+INSERT INTO konyvtar_mediak_tbl
+SELECT album_t(xt.cim, xt.akod, xt.mufaj)
+FROM KONYVTAR_XML v,
+     XMLTABLE('/konyvtar/album'
+              PASSING v.adat
+              COLUMNS
+                cim   VARCHAR2(100) PATH 'cim',
+                akod  VARCHAR2(10)  PATH '@aKod',
+                mufaj VARCHAR2(50)  PATH 'mufaj'
+             ) xt;
+
+SELECT
+    m.cim,
+    m.bemutatkozik() AS bemutatkozas
+FROM konyvtar_mediak_tbl m
+WHERE VALUE(m) IS OF (konyv_t, album_t);

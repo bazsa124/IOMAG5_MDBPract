@@ -1,0 +1,26 @@
+[
+    {
+        "cim": "Clean Code",
+        "szerzo": "Robert C. Martin",
+        "kiado": "Prentice Hall",
+        "kiadas_eve": 2012,
+        "nyelv": "Angol",
+        "mufajok": ["programozás", "szoftverfejlesztés"]
+    },
+    {
+        "cim": "Songs of Fire and Ice",
+        "szerzo": "George R.R. Martin",
+        "kiado": "Teszt Kiadó",
+        "kiadas_eve": 2010,
+        "nyelv": "Angol",
+        "mufajok": ["fantasy", "kaland"]
+    },
+    {
+        "cim": "Dune",
+        "szerzo": "Frank Herbert",
+        "kiado": "Teszt Kiadó",
+        "kiadas_eve": 2013,
+        "nyelv": "Angol",
+        "mufajok": ["sci-fi", "kaland"]
+    }
+]

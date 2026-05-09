@@ -1,0 +1,129 @@
+// Task 1
+
+
+mongoimport --db konyvtar --collection konyvek --file konyvek.json --jsonArray
+mongoimport --db konyvtar --collection tagok --file tagok.json --jsonArray
+
+db.konyvek.find()
+db.tagok.find()
+show collections
+
+db.konyvek.insertOne({
+    cim: "A Gyűrűk Ura",
+    szerzo: "J.R.R. Tolkien",
+    kiado: "Allen & Unwin",
+    kiadas_eve: 2001,
+    nyelv: "Magyar",
+    mufajok: ["fantasy", "kaland"]
+})
+
+db.tagok.insertOne({
+    nev: "Kiss Péter",
+    lakcim: { iranyitoszam: "1011", utca: "Fő", hazszam: "12" },
+    email: "kisspeter@teszt.hu",
+    telefonszam: "06309876543",
+    tagdij: 500,
+    kor: 41,
+    kedvenc_kiado: "Allen & Unwin",
+    erdeklodesek: ["fantasy", "történelem", "sci-fi"]
+})
+
+// Task 2
+
+
+db.konyvek.find({}, { cim: 1, kiadas_eve: 1, _id: 0 })
+
+db.konyvek.find({ kiadas_eve: { $gte: 2011 } })
+
+db.konyvek.find({
+    $or: [{ kiado: "Prentice Hall" }, { nyelv: "Magyar" }]
+})
+
+db.konyvek.find().sort({ kiadas_eve: -1 }).limit(3)
+
+db.tagok.find({ tagdij: { $gte: 500, $lte: 2000 } })
+
+db.konyvek.updateOne(
+    { cim: "Dune" },
+    { $set: { kiadas_eve: 2020 } }
+)
+
+db.konyvek.updateOne(
+    { cim: "Clean Code" },
+    { $push: { mufajok: "oktatás" } }
+)
+
+db.konyvek.deleteMany({ kiadas_eve: { $lt: 2005 } })
+db.konyvek.countDocuments()
+
+// Task 3
+
+db.konyvek.find({ cim: "Dune" }).explain("executionStats")
+
+db.konyvek.createIndex({ cim: 1 })
+
+db.konyvek.find({ cim: "Dune" }).explain("executionStats")
+
+db.konyvek.createIndex({ kiado: 1, kiadas_eve: -1 })
+
+db.konyvek.getIndexes()
+db.konyvek.dropIndex("cim_1")
+
+// Task 4
+
+db.konyvek.aggregate([
+    {
+        $group: {
+            _id: "$kiado",
+            db_konyv: { $sum: 1 },
+            atlag_kiadas_eve: { $avg: "$kiadas_eve" }
+        }
+    },
+    { $sort: { atlag_kiadas_eve: -1 } }
+])
+
+db.tagok.aggregate([
+    { $unwind: "$erdeklodesek" },
+    {
+        $group: {
+            _id: "$erdeklodesek",
+            tagok_szama: { $sum: 1 }
+        }
+    },
+    { $sort: { tagok_szama: -1 } }
+])
+
+db.tagok.aggregate([
+    {
+        $lookup: {
+            from: "konyvek",
+            localField: "kedvenc_kiado",
+            foreignField: "kiado",
+            as: "konyv_adatok"
+        }
+    },
+    { $unwind: "$konyv_adatok" },
+    { $match: { "konyv_adatok.kiadas_eve": { $gte: 2011 } } },
+    {
+        $project: {
+            _id: 0,
+            nev: 1,
+            email: 1,
+            konyv: "$konyv_adatok.cim",
+            kiadas_eve: "$konyv_adatok.kiadas_eve"
+        }
+    }
+])
+
+//Task 5
+
+db.tagok.aggregate([
+    { $sort: { kor: -1 } },
+    {
+        $group: {
+            _id: "$kedvenc_kiado",
+            legidosebb_nev: { $first: "$nev" },
+            legidosebb_kor: { $first: "$kor" }
+        }
+    }
+])
